@@ -30,16 +30,12 @@ const api = (function(){
     return listApiFetch(BASE_URL);
   };
   
-  const createItem = function(title, url){
-    const newItem= JSON.stringify({
-      title,
-      url,
-    });
-
-    const options= {
-      method:'POST',
-      body: newItem,
-      headers: new Headers({'Content-Type': 'application/json'})
+  const createItem = function(bookmark){
+    const newBookmark = JSON.stringify(bookmark);
+    const options ={
+      method: 'POST',
+      headers: new Headers({'Content-Type': 'application/json'}),
+      body: newBookmark
     };
     return listApiFetch(BASE_URL, options);
   };
@@ -59,3 +55,4 @@ const api = (function(){
 }());
 
 console.log(api.getItems());
+console.log(api.deleteItem('cjwwgm0lc003u0kx1y7c4786y'));
