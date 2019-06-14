@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Eugene's Bookmark App</title>
+  <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <header class = 'bookmark-header' role = 'banner'>
+    <h1>Bookmark App</h1>
+  </header>
+
+  <main>
+
+      <div class = main-controls>
+        <button id = 'add-bookmark-button'>Add New Bookmark</button>
+        
+        <br>
+        <label for='minimum-id'>Minimum Stars Filter</label>
+        <select id='minimum-id' class='minimum-filter'>
+            <option value='0'> Show All</option>
+            <option value='5'>&#9733;&#9733;&#9734;&#9734;&#9734;</option>
+            <option value='4'>&#9733;&#9733;&#9733;&#9734;&#9734;</option>
+            <option value='3'>&#9733;&#9733;&#9733;&#9733;&#9734;</option>
+            <option value='2'>&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+        </select>
+        </div>
+      </div>
+    
+      <div id = 'add-bookmark-div' class = 'hidden'>
+          <form id='add-bookmark-form'>
+              <fieldset>
+              <legend>Add New Bookmark</legend>
+                <div>
+
+                  <!-- Title -->
+                  <label for='add-title-input'>Title</label>
+                  <input id = 'add-title-input' type='text' placeholder='Only the Best Bookmarks!'>
+                  
+                  <br>
+                  <!-- URL -->
+                  <label for = 'add-url-input'>URL</label>
+                  <input id = 'add-url-input' type='url' placeholder='https://www.samplewebsite.com'>
+                  <!-- Description -->
+                  <br>
+
+                  <label for = 'add-description-input'>Description</label>
+                  <textarea id = 'add-description-input' placeholder='Bookmark description here!'></textarea>
+                </div>
+
+                <div>
+                  <!-- Rating -->
+                  <label>Rating</label>
+                  <select id = 'add-rating-input'>
+                      <option value='1'>&#9733;&#9734;&#9734;&#9734;&#9734;</option>
+                      <option value='2'>&#9733;&#9733;&#9734;&#9734;&#9734;</option>
+                      <option value='3'>&#9733;&#9733;&#9733;&#9734;&#9734;</option>
+                      <option value='4'>&#9733;&#9733;&#9733;&#9733;&#9734;</option>
+                      <option value='5'>&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+                  </select>
+                </div>
+
+                <!-- Add button -->
+                <div>
+                  <button type='submit' id='submit-add-button' class='submit-add-button'>Add</button>
+                  <button type='button' id='cancel-button' class = ''>Cancel</button>
+                </div>
+                </fieldset>
+              </form>
+      </div>
+
+       <!-- Bookmarks Area -->
+      <div class = 'bookmarks-section'>
+        
+        <fieldset>
+          <legend>Bookmark Title</legend>
+          <div class = 'bookmark-rating'>&#9733;&#9734;&#9734;&#9734;&#9734;</div>
+          <button class="see-details-button" id = 'see-details-button'>See Details</button>
+          <button class="hide-details-button hidden" id = 'hide-details-button'>Hide Details</button>
+          <button type='button' class='delete-button'>Delete</button>
+          <div class = 'expanded-details hidden' id = 'expanded-details'>
+            this is a bunch of expanded information
+            Visit Site
+          </div> 
+        </fieldset>
+
+        <fieldset>
+            <legend>Bookmark Title</legend>
+            <div class = 'bookmark-rating'>&#9733;&#9734;&#9734;&#9734;&#9734;</div>
+            <button>See Details</button>
+            <button class = 'hidden'>Hide Details</button>
+            <button>Delete</button>
+            <div class = 'hidden' id = 'expanded-details'>
+              this is a bunch of expanded information
+              Visit Site
+            </div> 
+          </fieldset>
+
+          <fieldset>
+              <legend>Bookmark Title</legend>
+              <div class = 'bookmark-rating'>&#9733;&#9734;&#9734;&#9734;&#9734;</div>
+              <button>See Details</button>
+              <button class = 'hidden'>Hide Details</button>
+              <button>Delete</button>
+              <div class = 'hidden' id = 'expanded-details'>
+                this is a bunch of expanded information
+                Visit Site
+              </div> 
+            </fieldset>
+
+            <fieldset>
+                <legend>Bookmark Title</legend>
+                <div class = 'bookmark-rating'>&#9733;&#9734;&#9734;&#9734;&#9734;</div>
+                <button>See Details</button>
+                <button class = 'hidden'>Hide Details</button>
+                <button>Delete</button>
+                <div class = 'hidden' id = 'expanded-details'>
+                  this is a bunch of expanded information
+                  Visit Site
+                </div> 
+              </fieldset>
+    
+
+      </div>
+
+
+
+    
+    </main>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="scripts/api.js"></script>
+    <script type="text/javascript" src="scripts/store.js"></script>
+    <script type="text/javascript" src="scripts/bookmark.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</body>
+
+
+</html>
