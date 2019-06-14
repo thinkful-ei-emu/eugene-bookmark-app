@@ -1,5 +1,7 @@
 /* eslint-disable strict */
 const api = (function(){
+
+  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/eugenegian/bookmarks';
   function listApiFetch(...args) {
     let error;
     return fetch(...args)
@@ -23,9 +25,9 @@ const api = (function(){
       });
   }
   
-  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/eugene/';
+  
   const getItems = function(){
-    return listApiFetch(`${BASE_URL}bookmarks`);
+    return listApiFetch(BASE_URL);
   };
   
   const createItem = function(title, url){
@@ -39,30 +41,21 @@ const api = (function(){
       body: newItem,
       headers: new Headers({'Content-Type': 'application/json'})
     };
-    return listApiFetch(`${BASE_URL}bookmarks`, options);
-  };
-  
-  const updateItem = function(id, objectpatch){
-    const updateObject= JSON.stringify(objectpatch);
-    const options= {
-      method:'PATCH',
-      body: updateObject,
-      headers: new Headers({'Content-Type': 'application/json'})
-    };
-    return listApiFetch(`${BASE_URL}bookmarks/${id}`, options);
+    return listApiFetch(BASE_URL, options);
   };
   
   const deleteItem = function(id){
     const options = {
       method: 'DELETE'
     };
-    return listApiFetch(`${BASE_URL}bookmarks/${id}`, options);
+    return listApiFetch(`${BASE_URL}/${id}`, options);
   };
   
   return {
     getItems,
     createItem,
-    updateItem,
     deleteItem,
   };
 }());
+
+console.log(api.getItems());

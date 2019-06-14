@@ -4,8 +4,8 @@
 const Bookmark = (function(){
  
   return {
-    bindEventListeners,
-    render
+    //bindEventListeners,
+    //render
   };
 })();
   
