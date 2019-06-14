@@ -18,9 +18,8 @@
 
   <main>
 
-      <div class = main-controls>
+      <section class = main-controls>
         <button id = 'add-bookmark-button'>Add New Bookmark</button>
-        
         <br>
         <label for='minimum-id'>Minimum Stars Filter</label>
         <select id='minimum-id' class='minimum-filter'>
@@ -30,43 +29,33 @@
             <option value='3'>&#9733;&#9733;&#9733;&#9733;&#9734;</option>
             <option value='2'>&#9733;&#9733;&#9733;&#9733;&#9733;</option>
         </select>
-        </div>
-      </div>
+      </section>
     
+      <!-- wireframe code -->
       <div id = 'add-bookmark-div' class = 'hidden'>
           <form id='add-bookmark-form'>
-              <fieldset>
-              <legend>Add New Bookmark</legend>
+             
                 <div>
-
-                  <!-- Title -->
                   <label for='add-title-input'>Title</label>
                   <input id = 'add-title-input' type='text' placeholder='Only the Best Bookmarks!'>
-                  
                   <br>
-                  <!-- URL -->
                   <label for = 'add-url-input'>URL</label>
                   <input id = 'add-url-input' type='url' placeholder='https://www.samplewebsite.com'>
-                  <!-- Description -->
                   <br>
-
                   <label for = 'add-description-input'>Description</label>
                   <textarea id = 'add-description-input' placeholder='Bookmark description here!'></textarea>
                 </div>
 
                 <div>
-                  <!-- Rating -->
-                  <label>Rating</label>
+                  <label for = 'add-rating-input'>Rating</label>
                   <select id = 'add-rating-input'>
-                      <option value='1'>&#9733;&#9734;&#9734;&#9734;&#9734;</option>
-                      <option value='2'>&#9733;&#9733;&#9734;&#9734;&#9734;</option>
-                      <option value='3'>&#9733;&#9733;&#9733;&#9734;&#9734;</option>
-                      <option value='4'>&#9733;&#9733;&#9733;&#9733;&#9734;</option>
-                      <option value='5'>&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+                    <option value='1'>&#9733;&#9734;&#9734;&#9734;&#9734;</option>
+                    <option value='2'>&#9733;&#9733;&#9734;&#9734;&#9734;</option>
+                    <option value='3'>&#9733;&#9733;&#9733;&#9734;&#9734;</option>
+                    <option value='4'>&#9733;&#9733;&#9733;&#9733;&#9734;</option>
+                    <option value='5'>&#9733;&#9733;&#9733;&#9733;&#9733;</option>
                   </select>
                 </div>
-
-                <!-- Add button -->
                 <div>
                   <button type='submit' id='submit-add-button' class='submit-add-button'>Add</button>
                   <button type='button' id='cancel-button' class = ''>Cancel</button>
