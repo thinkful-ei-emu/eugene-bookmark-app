@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 'use strict';
-//this file is for all my event listeners as well as my render function
 
 const bookmark = (function() {
   function generateBookmarkElement(newBookmark) {
@@ -94,6 +93,20 @@ const bookmark = (function() {
     </form>`;
   }
 
+  function generateErrorMessageElement() {
+    return `<p id="error-message">Error: ${store.error}</p>
+    <button type="button" id="js-error-dismiss">Dismiss</button>
+    `;
+  }
+
+  function handleDismissError() {
+    $('#js-error').on('click','#js-error-dismiss', function() {
+      store.setError(null);
+      render();
+    });
+  }
+
+
   function render() {
     if (store.addingNew) {
       $('#js-add-bookmark').html(generateNewBookmarkFormHtml());
@@ -104,10 +117,9 @@ const bookmark = (function() {
     }
 
     if (store.error) {
-      $('#js-error').removeClass('hidden');
-      $('#error-message').html(`Error: ${store.error}`);
+      $('#js-error').html(generateErrorMessageElement());
     } else {
-      $('#js-error').addClass('hidden');
+      $('#js-error').html('');
     }
 
     let bookmarks = [...store.bookmarks];
@@ -146,7 +158,6 @@ const bookmark = (function() {
 
   function handleAddBookmarkSubmit() {
     $('#js-add-bookmark').on('click', '#js-submit-button', event => {
-    // $('#js-add-bookmark').submit(event => {
       event.preventDefault();
 
       const title = $('#js-title-input').val();
@@ -207,23 +218,18 @@ const bookmark = (function() {
     });
   }
 
-  function handleDismissError() {
-    $('#js-error-dismiss').click(event => {
-      event.preventDefault();
-      store.setError(null);
-      render();
-    });
-  }
+ 
 
   function bindEventListeners() {
     handleNewBookmarkButton();
     handleDeleteBookmark();
     handleAddBookmarkSubmit();
+    handleCancelButton();
     handleExpandBookmark();
     handleVisitSite();
     handleFiltering();
     handleDismissError();
-    handleCancelButton();
+   
   }
 
   return {
