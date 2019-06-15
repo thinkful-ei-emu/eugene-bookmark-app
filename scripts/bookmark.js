@@ -5,15 +5,15 @@
 
 const bookmark = (function() {
   function generateBookmarkElement(newBookmark) {
-    let expandedInfo = '';
+    let expandedDetails = '';
     let visitSite = '';
 
-    if (newBookmark.fullView) {
-      expandedInfo = `<section class ="bookmark-desc"><p class="desc">${
+    if (newBookmark.seeDetails) {
+      expandedDetails = `<section class ="bookmark-desc"><p class="desc">${
         newBookmark.desc
       }</p></section>`;
       visitSite =
-        '<button value="Visit Site" class="js-visit-site" type="button">Visit Site</button>';
+        '<button value="Visit Site" class="js-visit-button" type="button">Visit Site</button>';
 
       return `<fieldset class = "bookmark-display">
       <legend> ${newBookmark.title} </legend>
@@ -21,7 +21,7 @@ const bookmark = (function() {
         <div>
           <div class = "bookmark-rating">${newBookmark.rating} stars</div>
         </div>
-        ${expandedInfo}
+        ${expandedDetails}
         <div id="bookmark-buttons">
           <button class="js-expand-button" type="button">See Details</button>
           <button type="button" class="js-delete-button">Delete</button>
@@ -45,7 +45,7 @@ const bookmark = (function() {
           ${visitSite}
           </div>
         </div>
-         ${expandedInfo}
+         ${expandedDetails}
       </div>
     </fieldset>`;
   }
@@ -56,17 +56,17 @@ const bookmark = (function() {
 
   function render() {
     if (store.addingNew) {
-      $('#js-add-new-bookmark').removeClass('hidden');
-      $('#js-add-filter-form').addClass('hidden');
+      $('#js-add-bookmark').removeClass('hidden');
+      $('#js-new-filter-form').addClass('hidden');
     } else {
-      $('#js-add-new-bookmark').addClass('hidden');
-      $('#js-add-filter-form').removeClass('hidden');
+      $('#js-add-bookmark').addClass('hidden');
+      $('#js-new-filter-form').removeClass('hidden');
     }
 
     if (store.error) {
       $('#js-error').removeClass('hidden');
-      $('#js-add-filter-form').addClass('hidden');
-      $('#error-message').html(store.error);
+      //$('#js-new-filter-form').addClass('hidden');
+      $('#error-message').html(`Error: ${store.error}`);
     } else {
       $('#js-error').addClass('hidden');
     }
@@ -74,11 +74,11 @@ const bookmark = (function() {
     let bookmarks = [...store.bookmarks];
     const filteredList = bookmarks.filter(book => (book.rating >= store.ratingFilter));
     const html = generateBookmarkElementsString(filteredList);
-    $('#js-bookmark-list').html(html);
+    $('#js-bookmark-area').html(html);
   }
 
   function handleAddExpand() {
-    $('#js-add-button').click(function(event) {
+    $('#js-new-bookmark-button').click(function(event) {
       event.preventDefault();
       store.toggleAddingNew();
       render();
@@ -86,7 +86,7 @@ const bookmark = (function() {
   }
 
   function handleCancelButton() {
-    $('#js-add-cancel').click(event => {
+    $('#js-cancel-button').click(event => {
       event.preventDefault();
       store.toggleAddingNew();
       render();
@@ -99,7 +99,7 @@ const bookmark = (function() {
   }
   
   function handleDeleteBookmark() {
-    $('#js-bookmark-list').on('click', '.js-delete-button', event => {
+    $('#js-bookmark-area').on('click', '.js-delete-button', event => {
       const id = getBookmarkIdFromElement(event.currentTarget);
       api.deleteBookmark(id);
       store.findAndDelete(id);
@@ -108,18 +108,18 @@ const bookmark = (function() {
   }
 
   function handleAddBookmarkSubmit() {
-    $('#js-add-new-bookmark').submit(event => {
+    $('#js-add-bookmark').submit(event => {
       event.preventDefault();
 
       const title = $('#js-title-input').val();
       const url = $('#js-url-input').val();
       const desc = $('#js-description-input').val();
-      const rating = $('#js-rating-input').val();
+      const rating = $('#js-rating-selection').val();
 
       $('#js-title-input').val('');
       $('#js-url-input').val('http://');
       $('#js-description-input').val('');
-      $('#js-rating-input').val('');
+      $('#js-rating-selection').val('');
 
       const bookmark = {
         title: title,
@@ -145,7 +145,7 @@ const bookmark = (function() {
   }
 
   function handleExpandBookmark() {
-    $('#js-bookmark-list').on('click', '.js-expand-button', event => {
+    $('#js-bookmark-area').on('click', '.js-expand-button', event => {
       const id = getBookmarkIdFromElement(event.currentTarget)
       store.toggleFullView(id);
       render();
@@ -153,7 +153,7 @@ const bookmark = (function() {
   }
 
   function handleVisitSite() {
-    $('#js-bookmark-list').on('click', '.js-visit-site', event => {
+    $('#js-bookmark-area').on('click', '.js-visit-button', event => {
       const id = getBookmarkIdFromElement(event.currentTarget);
       const bookmark = store.findById(id);
       const url = bookmark.url;
@@ -170,25 +170,22 @@ const bookmark = (function() {
   }
 
   function handleDismissError() {
-    $('#js-error-cancel').click(event => {
+    $('#js-error-dismiss').click(event => {
       event.preventDefault();
       store.setError(null);
       render();
     });
   }
 
-
-
   function bindEventListeners() {
     handleAddExpand();
     handleCancelButton();
-    handleAddBookmarkSubmit();
-    handleFiltering();
-    handleVisitSite();
-    handleExpandBookmark();
     handleDeleteBookmark();
+    handleAddBookmarkSubmit();
+    handleExpandBookmark();
+    handleVisitSite();
+    handleFiltering();
     handleDismissError();
-  
   }
 
   return {

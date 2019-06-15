@@ -3,7 +3,7 @@
 const store = (function() {
 
   const addBookmark = function(bookmark) {
-    bookmark.fullView = false;
+    bookmark.seeDetails = false;
     this.bookmarks.push(bookmark);
   };
 
@@ -25,7 +25,7 @@ const store = (function() {
 
   const toggleFullView = function(id) {
     let book = findById(id);
-    book.fullView = !book.fullView;
+    book.seeDetails = !book.seeDetails;
   };
 
   const setError = function(error) {

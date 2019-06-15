@@ -22,15 +22,15 @@
 
     <div id="js-error" class="hidden">
       <p id="error-message"></p>
-      <button type="cancel" id="js-error-cancel">Dismiss</button>
+      <button type="button" id="js-error-dismiss">Dismiss</button>
     </div>
 
-    <section id="js-add-new-bookmark" class="hidden">
+    <section id="js-add-bookmark" class="hidden">
       <form>
         <section>
           <div>
             <label for="title">Title</label>
-            <input type="text" name="title" id="js-title-input" />
+            <input type="text" name="title" id="js-title-input" placeholder="Cool Title Here"/>
           </div>
           <div class>
             <label for="url">Url</label>
@@ -38,34 +38,34 @@
               type="url"
               name="url"
               id="js-url-input"
-              placeholder="http://"
-              value="http://"
+              placeholder="http://www.coolwebsite.com"
             />
           </div>
           <div class>
             <label for="description">Description</label>
-            <input type="text" name="description" id="js-description-input" />
+            <input type="text" name="description" id="js-description-input" placeholder= "Website description here"/>
           </div>
         </section>
 
         <div>
-          <select name="rating-filter" id="js-rating-input" required>
+          <label for="rating-selection">Rating</label>
+          <select name="rating-selection" id="js-rating-selection" required>
             <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
             <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
             <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734;</option>
             <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
             <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
           </select>
-          <div id="form-buttons">
+          <div>
             <button type="submit">Submit</button>
-            <button type="button" id="js-add-cancel">Cancel</button>
+            <button type="button" id="js-cancel-button">Cancel</button>
           </div>
         </div>
       </form>
     </section>
 
-    <form id="js-add-filter-form">
-      <button id="js-add-button" type="button">New Bookmark</button>
+    <form id="js-new-filter-form">
+      <button id="js-new-bookmark-button" type="button">New Bookmark</button>
       <select name="rating-filter" id="js-rating-filter">
         <option value="0">Filter by minimum rating</option>
         <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
@@ -76,16 +76,12 @@
       </select>
     </form>
 
-    <main id="js-bookmark-list"></main>
+    <main id="js-bookmark-area">
+      <!-- where bookmarks will be rendered -->
+    </main>
 
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-3.2.1.min.js"
-    ></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="scripts/api.js"></script>
     <script type="text/javascript" src="scripts/store.js"></script>
     <script type="text/javascript" src="scripts/bookmark.js"></script>
