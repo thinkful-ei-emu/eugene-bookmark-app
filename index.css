@@ -11,3 +11,11 @@
 label {
   display: block;
 }
+
+
+.bookmark-desc {
+  height:50px;
+  width:400px;
+  border:1px solid #ccc;
+  overflow: auto;
+}

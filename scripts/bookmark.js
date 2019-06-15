@@ -5,15 +5,13 @@
 
 const bookmark = (function() {
   function generateBookmarkElement(newBookmark) {
-    let expandedDetails = `<section class ="bookmark-desc"><p class="desc">${newBookmark.desc}</p></section>`;
-    let visitSite ='<button value="Visit Site" class="js-visit-button" type="button">Visit Site</button>';
 
     if (newBookmark.seeDetails) {
       return `<fieldset class = "bookmark-display">
       <legend> ${newBookmark.title} </legend>
       <div class = "js-bookmark" data-book-id = ${newBookmark.id}>
           <div class = "bookmark-rating">${newBookmark.rating} stars</div>
-          <section class ="bookmark-desc"><p class="desc">${newBookmark.desc}</p></section>
+          <div class ="bookmark-desc">${newBookmark.desc}</div>
           <div id="bookmark-buttons">
           <button class="js-expand-button" type="button">See Details</button>
           <button type="button" class="js-delete-button">Delete</button>
