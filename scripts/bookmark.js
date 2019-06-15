@@ -2,31 +2,23 @@
 /* eslint-disable no-unused-vars */
 'use strict';
 
+
 const bookmark = (function() {
   function generateBookmarkElement(newBookmark) {
-    let expandedDetails = '';
-    let visitSite = '';
+    let expandedDetails = `<section class ="bookmark-desc"><p class="desc">${newBookmark.desc}</p></section>`;
+    let visitSite ='<button value="Visit Site" class="js-visit-button" type="button">Visit Site</button>';
 
     if (newBookmark.seeDetails) {
-      expandedDetails = `<section class ="bookmark-desc"><p class="desc">${
-        newBookmark.desc
-      }</p></section>`;
-      visitSite =
-        '<button value="Visit Site" class="js-visit-button" type="button">Visit Site</button>';
-
       return `<fieldset class = "bookmark-display">
       <legend> ${newBookmark.title} </legend>
       <div class = "js-bookmark" data-book-id = ${newBookmark.id}>
-        <div>
           <div class = "bookmark-rating">${newBookmark.rating} stars</div>
-        </div>
-        ${expandedDetails}
-        <div id="bookmark-buttons">
+          <section class ="bookmark-desc"><p class="desc">${newBookmark.desc}</p></section>
+          <div id="bookmark-buttons">
           <button class="js-expand-button" type="button">See Details</button>
           <button type="button" class="js-delete-button">Delete</button>
-          ${visitSite}
+          <button value="Visit Site" class="js-visit-button" type="button">Visit Site</button>
           </div>
-        
       </div>
     </fieldset>`;
     }
@@ -34,17 +26,11 @@ const bookmark = (function() {
     return `<fieldset class = "bookmark-display">
     <legend> ${newBookmark.title} </legend>
       <div class = "js-bookmark" data-book-id = ${newBookmark.id}>
-      <div>
-        <div class ="flex">
           <div class = "bookmark-rating">${newBookmark.rating} stars</div>
-        </div>
           <div id="bookmark-buttons">
           <button class="js-expand-button" type="button">See Details</button>
           <button class="js-delete-button" type="button">Delete</button>
-          ${visitSite}
           </div>
-        </div>
-         ${expandedDetails}
       </div>
     </fieldset>`;
   }

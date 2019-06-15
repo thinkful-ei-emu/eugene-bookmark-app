@@ -38,11 +38,11 @@ const store = (function() {
     ratingFilter: 0,
     error: null,
     addBookmark,
+    findById,
+    findAndDelete,
     toggleAddingNew,
     setRatingFilter,
     setError,
-    findAndDelete,
-    toggleFullView,
-    findById
+    toggleFullView
   };
 })();
