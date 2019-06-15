@@ -54,18 +54,57 @@ const bookmark = (function() {
     return bookmarkArray.map(book => generateBookmarkElement(book)).join('');
   }
 
+  function generateNewBookmarkFormHtml() {
+    return `
+    <form>
+      <section>
+        <div>
+          <label for="title">Title</label>
+          <input type="text" name="title" id="js-title-input" placeholder="Cool Title Here"/>
+        </div>
+        <div class>
+          <label for="url">Url</label>
+          <input
+            type="url"
+            name="url"
+            id="js-url-input"
+            placeholder="http://www.coolwebsite.com"
+          />
+        </div>
+        <div class>
+          <label for="description">Description</label>
+          <input type="text" name="description" id="js-description-input" placeholder= "Website description here"/>
+        </div>
+      </section>
+
+      <div>
+        <label for="rating-selection">Rating</label>
+        <select name="rating-selection" id="js-rating-selection" required>
+          <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
+          <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
+          <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734;</option>
+          <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
+          <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+        </select>
+        <div>
+          <button type="submit">Submit</button>
+          <button type="button" id="js-cancel-button">Cancel</button>
+        </div>
+      </div>
+    </form>`;
+  }
+
   function render() {
     if (store.addingNew) {
-      $('#js-add-bookmark').removeClass('hidden');
+      $('#js-add-bookmark').html(generateNewBookmarkFormHtml());
       $('#js-new-filter-form').addClass('hidden');
     } else {
-      $('#js-add-bookmark').addClass('hidden');
+      $('#js-add-bookmark').html('');
       $('#js-new-filter-form').removeClass('hidden');
     }
 
     if (store.error) {
       $('#js-error').removeClass('hidden');
-      //$('#js-new-filter-form').addClass('hidden');
       $('#error-message').html(`Error: ${store.error}`);
     } else {
       $('#js-error').addClass('hidden');
@@ -146,7 +185,7 @@ const bookmark = (function() {
 
   function handleExpandBookmark() {
     $('#js-bookmark-area').on('click', '.js-expand-button', event => {
-      const id = getBookmarkIdFromElement(event.currentTarget)
+      const id = getBookmarkIdFromElement(event.currentTarget);
       store.toggleFullView(id);
       render();
     });
@@ -179,9 +218,9 @@ const bookmark = (function() {
 
   function bindEventListeners() {
     handleAddExpand();
-    handleCancelButton();
     handleDeleteBookmark();
     handleAddBookmarkSubmit();
+    handleCancelButton();
     handleExpandBookmark();
     handleVisitSite();
     handleFiltering();
