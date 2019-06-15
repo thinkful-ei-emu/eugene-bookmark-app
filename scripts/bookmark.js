@@ -87,7 +87,7 @@ const bookmark = (function() {
           <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
         </select>
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" id="js-submit-button">Submit</button>
           <button type="button" id="js-cancel-button">Cancel</button>
         </div>
       </div>
@@ -145,7 +145,8 @@ const bookmark = (function() {
   }
 
   function handleAddBookmarkSubmit() {
-    $('#js-add-bookmark').submit(event => {
+    $('#js-add-bookmark').on('click', '#js-submit-button', event => {
+    // $('#js-add-bookmark').submit(event => {
       event.preventDefault();
 
       const title = $('#js-title-input').val();
