@@ -116,17 +116,15 @@ const bookmark = (function() {
     $('#js-bookmark-area').html(html);
   }
 
-  function handleAddExpand() {
-    $('#js-new-bookmark-button').click(function(event) {
-      event.preventDefault();
+  function handleNewBookmarkButton() {
+    $('#js-new-bookmark-button').click(function() {
       store.toggleAddingNew();
       render();
     });
   }
 
   function handleCancelButton() {
-    $('#js-cancel-button').click(event => {
-      event.preventDefault();
+    $('#js-add-bookmark').on('click','#js-cancel-button',function() {
       store.toggleAddingNew();
       render();
     });
@@ -217,14 +215,14 @@ const bookmark = (function() {
   }
 
   function bindEventListeners() {
-    handleAddExpand();
+    handleNewBookmarkButton();
     handleDeleteBookmark();
     handleAddBookmarkSubmit();
-    handleCancelButton();
     handleExpandBookmark();
     handleVisitSite();
     handleFiltering();
     handleDismissError();
+    handleCancelButton();
   }
 
   return {
