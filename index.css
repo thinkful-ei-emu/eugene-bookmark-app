@@ -1,11 +1,6 @@
-/* style for orange stars */
-
 * {
   text-align: center;
   margin: auto;
-}
-.checked {
-  color: orange;
 }
 
 .hidden {
@@ -15,4 +10,3 @@
 label {
   display: block;
 }
-

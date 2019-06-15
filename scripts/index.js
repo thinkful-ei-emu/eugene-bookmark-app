@@ -1,5 +1,11 @@
 /* eslint-disable no-undef */
 'use strict';
-/* global Bookmark, store*/
-// eslint-disable-next-line no-unused-vars
 
+$(document).ready(function() {
+  bookmark.bindEventListeners();
+  api.getBookmarks()
+    .then((res) => {
+      res.forEach(bookmark => store.addBookmark(bookmark));
+      bookmark.render();
+    });
+});
