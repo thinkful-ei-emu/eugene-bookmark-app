@@ -39,6 +39,8 @@ const bookmark = (function() {
 
   function generateNewBookmarkFormHtml() {
     return `
+    <fieldset>
+    <legend> New Bookmark </Legend>
     <form>
       <section>
         <div>
@@ -74,7 +76,8 @@ const bookmark = (function() {
           <button type="button" id="js-cancel-button">Cancel</button>
         </div>
       </div>
-    </form>`;
+    </form>
+    </fieldset>`;
   }
 
   function generateErrorMessageElement() {
